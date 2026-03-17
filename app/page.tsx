@@ -11,7 +11,10 @@ async function send(){
 const trimmed = msg.trim()
 if(!trimmed) return
 
-const newChat = [...chat, { role:"user", content: trimmed }]
+const newChat: { role: "user" | "assistant"; content: string }[] = [
+...chat,
+{ role:"user", content: trimmed }
+]
 setChat(newChat)
 setMsg("")
 
