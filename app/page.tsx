@@ -40,13 +40,16 @@ message: trimmed
 })
 })
   
-const res = await fetch("/api/chat",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
+const res = await fetch("https://hook.eu1.make.com/n9a4hk2f5k7a8avaecnxj66qqhcjhspf", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
 },
-body: JSON.stringify(newChat)
+body: JSON.stringify({
+message: trimmed
 })
+})
+
 
 const text = await res.text()
 
