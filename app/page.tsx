@@ -30,6 +30,16 @@ const newChat: { role: "user" | "assistant"; content: string }[] = [
 setChat(newChat)
 setMsg("")
 
+await fetch("https://hook.eu1.make.com/n9a4hk2f5k7a8avaecnxj66qqhcjhspf", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+message: trimmed
+})
+})
+  
 const res = await fetch("/api/chat",{
 method:"POST",
 headers:{
