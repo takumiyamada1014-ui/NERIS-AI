@@ -32,7 +32,7 @@ setChat([
 }
 
 
-setChat([...chat,"You: "+msg,"NERIS: "+text])
+
 setMsg("")
 }
 
@@ -41,7 +41,9 @@ return (
 <h1>NERIS</h1>
 
 <div style={{marginBottom:20}}>
-{chat.map((c,i)=>(<div key={i}>{c}</div>))}
+{chat.map((c, i) => (
+<div key={i}>{c.content}</div>
+))}
 </div>
 
 <input
