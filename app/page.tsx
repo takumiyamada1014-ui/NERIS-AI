@@ -3,11 +3,34 @@ import { useState } from "react"
 
 export default function Home() {
 const [msg,setMsg] = useState("")
-const [chat,setChat] = useState<string[]>([])
+const [chat, setChat] = useState<
+{ role: "user" | "assistant"; content: string }[]
+>([])
 
 async function send(){
-const res = await fetch("/api/chat",{method:"POST",body:msg})
+const trimmed = msg.trim()
+if(!trimmed) return
+
+const newChat = [...chat, { role:"user", content: trimmed }]
+setChat(newChat)
+setMsg("")
+
+const res = await fetch("/api/chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify(newChat)
+})
+
 const text = await res.text()
+
+setChat([
+...newChat,
+{ role:"assistant", content: text }
+])
+}
+
 
 setChat([...chat,"You: "+msg,"NERIS: "+text])
 setMsg("")
