@@ -6,7 +6,7 @@ apiKey: process.env.OPENAI_API_KEY
 
 export async function POST(req: Request) {
 
-const messages = await req.json()
+const messages = (await req.json()).slice(-10)
 
 const completion = await openai.chat.completions.create({
 model:"gpt-4o-mini",
