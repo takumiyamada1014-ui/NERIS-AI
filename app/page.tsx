@@ -37,21 +37,68 @@ setMsg("")
 }
 
 return (
-<div style={{padding:40,fontFamily:"sans-serif"}}>
-<h1>NERIS</h1>
+<div style={{display:"flex", height:"100vh"}}>
 
-<div style={{marginBottom:20}}>
-{chat.map((c, i) => (
-<div key={i}>{c.content}</div>
+{/* 左：履歴 */}
+<div style={{
+width:"250px",
+background:"#202123",
+color:"white",
+padding:"10px"
+}}>
+<h3>NERIS</h3>
+</div>
+
+{/* 右：チャット */}
+<div style={{
+flex:1,
+display:"flex",
+flexDirection:"column",
+background:"#343541",
+color:"white"
+}}>
+
+{/* メッセージ */}
+<div style={{
+flex:1,
+padding:"20px",
+overflowY:"auto"
+}}>
+{chat.map((c,i)=>(
+<div key={i} style={{
+marginBottom:"15px",
+background: c.role==="user" ? "#444654" : "#3e3f4b",
+padding:"10px",
+borderRadius:"5px"
+}}>
+<b>{c.role==="user"?"You":"NERIS"}:</b><br/>
+{c.content}
+</div>
 ))}
 </div>
 
+{/* 入力欄 */}
+<div style={{
+padding:"10px",
+borderTop:"1px solid #555",
+display:"flex"
+}}>
 <input
 value={msg}
-onChange={e=>setMsg(e.target.value)}
+onChange={(e)=>setMsg(e.target.value)}
+style={{
+flex:1,
+padding:"10px",
+background:"#40414f",
+color:"white",
+border:"none"
+}}
 />
+<button onClick={send} style={{marginLeft:"10px"}}>
+送信
+</button>
+</div>
 
-<button onClick={send}>送信</button>
+</div>
 </div>
 )
-}
