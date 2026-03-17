@@ -86,6 +86,11 @@ display:"flex"
 <input
 value={msg}
 onChange={(e)=>setMsg(e.target.value)}
+onKeyDown={(e)=>{
+if(e.key==="Enter"){
+send()
+}
+}}
 style={{
 flex:1,
 padding:"10px",
