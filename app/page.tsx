@@ -1,11 +1,23 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
 
 export default function Home() {
 const [msg,setMsg] = useState("")
 const [chat, setChat] = useState<
 { role: "user" | "assistant"; content: string }[]
 >([])
+
+useEffect(()=>{
+const saved = localStorage.getItem("chat")
+if(saved){
+setChat(JSON.parse(saved))
+}
+},[])
+
+useEffect(()=>{
+localStorage.setItem("chat", JSON.stringify(chat))
+},[chat])  
 
 async function send(){
 const trimmed = msg.trim()
