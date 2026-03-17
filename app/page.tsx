@@ -29,9 +29,6 @@ setChat([
 ...newChat,
 { role:"assistant", content: text }
 ])
-}
-
-
 
 setMsg("")
 }
