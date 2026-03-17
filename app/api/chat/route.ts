@@ -6,23 +6,17 @@ apiKey: process.env.OPENAI_API_KEY
 
 export async function POST(req: Request) {
 
-const msg = await req.text()
+const messages = await req.json()
 
 const completion = await openai.chat.completions.create({
-
-model: "gpt-4o-mini",
-
-messages: [
+model:"gpt-4o-mini",
+messages:[
 {
-role: "system",
-content: "You are NERIS, a calm and intelligent strategic assistant."
+role:"system",
+content:"NERIS人格"
 },
-{
-role: "user",
-content: msg
-}
+...messages
 ]
-
 })
 
 return new Response(
